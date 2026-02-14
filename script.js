@@ -13,6 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const scaleY = window.innerHeight / 1200;
     const scale = Math.min(scaleX, scaleY, 1);
     scene.style.transform = 'scale(' + scale + ')';
+    // Collapse the element's box to match visual size so flexbox centers it properly
+    scene.style.width = (1200 * scale) + 'px';
+    scene.style.height = (1200 * scale) + 'px';
   }
 
   fitScene();

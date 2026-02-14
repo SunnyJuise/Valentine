@@ -29,7 +29,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  transform-origin: top center;
+  transform-origin: center center;
 }
 
 /* ---------- Header ---------- */
