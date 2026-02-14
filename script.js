@@ -5,27 +5,28 @@ document.addEventListener('DOMContentLoaded', () => {
   const cardLeft = document.getElementById('cardLeft');
   const cardRight = document.getElementById('cardRight');
   let isOpened = false;
+  let animating = false;
 
   // Scale the scene to fit the viewport
   function fitScene() {
     const scaleX = window.innerWidth / 1200;
     const scaleY = window.innerHeight / 1200;
-    const scale = Math.min(scaleX, scaleY, 1); // never upscale beyond 1
+    const scale = Math.min(scaleX, scaleY, 1);
     scene.style.transform = 'scale(' + scale + ')';
   }
 
   fitScene();
   window.addEventListener('resize', fitScene);
 
+  // Open the card
   heartClosed.addEventListener('click', () => {
-    if (isOpened) return;
+    if (isOpened || animating) return;
+    animating = true;
     isOpened = true;
 
-    // Fade out the closed heart smoothly (0.4s via CSS transition)
     heartClosed.style.opacity = '0';
     heartClosed.style.pointerEvents = 'none';
 
-    // Simultaneously start the unfold
     cardBook.classList.add('opening');
 
     requestAnimationFrame(() => {
@@ -35,9 +36,33 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // Clean up after fade completes
     setTimeout(() => {
       heartClosed.style.display = 'none';
-    }, 400);
+      animating = false;
+    }, 1200);
+  });
+
+  // Close the card
+  cardBook.addEventListener('click', () => {
+    if (!isOpened || animating) return;
+    animating = true;
+    isOpened = false;
+
+    // Fold the halves back
+    cardLeft.classList.remove('opened');
+    cardRight.classList.remove('opened');
+
+    // After halves fold, rotate back and show closed heart
+    setTimeout(() => {
+      cardBook.classList.remove('opening');
+
+      heartClosed.style.display = '';
+      // Force reflow so display:'' takes effect before opacity transition
+      heartClosed.offsetHeight;
+      heartClosed.style.opacity = '1';
+      heartClosed.style.pointerEvents = '';
+
+      animating = false;
+    }, 1200);
   });
 });
