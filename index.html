@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valentine 2026</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="card-scene">
+    <div class="header">
+      <span>2026</span>
+      <span>Crafted by hand</span>
+      <span>SJC</span>
+    </div>
+
+    <!-- CLOSED STATE -->
+    <div class="heart-closed" id="heartClosed">
+      <img src="assets/heart-closed.svg" class="heart-closed-svg" alt="">
+      <span class="click-me-text">Click me</span>
+    </div>
+
+    <!-- OPENED STATE (hidden initially) -->
+    <div class="card-book" id="cardBook">
+      <!-- Left half: hinged on its right edge -->
+      <div class="card-half card-left" id="cardLeft">
+        <div class="card-half-inner">
+          <img src="assets/heart-left.svg" class="half-svg" alt="">
+          <div class="left-content">
+            <img src="assets/heart-outline.svg" class="outline-heart" alt="">
+            <p class="love-message">Every minute by your side is the happiest moment of my life</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right half: hinged on its left edge -->
+      <div class="card-half card-right" id="cardRight">
+        <div class="card-half-inner">
+          <img src="assets/heart-right.svg" class="half-svg" alt="">
+          <div class="right-content">
+            <img src="assets/photo-masked.svg" class="photo-masked" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

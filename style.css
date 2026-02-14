@@ -1,0 +1,219 @@
+@font-face {
+  font-family: 'PP Editorial New';
+  src: url('assets/PPEditorialNew-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #101010;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* ---------- Scene ---------- */
+.card-scene {
+  width: 1200px;
+  height: 1200px;
+  position: relative;
+  perspective: 1800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ---------- Header ---------- */
+.header {
+  font-family: 'PP Editorial New', Georgia, serif;
+  font-size: 12px;
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding-top: 50px;
+  line-height: normal;
+}
+
+/* ---------- Closed Heart ---------- */
+.heart-closed {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 583px;
+  height: 523px;
+  transform: translate(-50%, -50%) rotate(9.06deg);
+  cursor: pointer;
+  z-index: 10;
+  transition: opacity 0.4s ease, transform 0.35s ease;
+}
+
+.heart-closed:hover {
+  transform: translate(-50%, -50%) rotate(9.06deg) scale(1.03);
+}
+
+.heart-closed-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.click-me-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-9.06deg);
+  font-family: 'PP Editorial New', Georgia, serif;
+  font-size: 32px;
+  color: white;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* ---------- Card Book (Opened State) ---------- */
+.card-book {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(9.06deg);
+  display: flex;
+  align-items: flex-start;
+  opacity: 1;
+  visibility: visible;
+  z-index: 5;
+  pointer-events: none;
+  transform-style: preserve-3d;
+}
+
+.card-book.opening {
+  transform: translate(-50%, -50%) rotate(0deg);
+  transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  pointer-events: auto;
+}
+
+/* ---------- Card Halves ---------- */
+.card-half {
+  position: relative;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.card-half-inner {
+  position: relative;
+}
+
+.half-svg {
+  display: block;
+}
+
+/* Left half dimensions match viewBox aspect ratio */
+.card-left {
+  width: 554px;
+  height: 523px;
+  transform-origin: right center;
+  transform: rotateY(90deg);
+}
+
+.card-left .card-half-inner {
+  width: 554px;
+  height: 523px;
+}
+
+.card-left .half-svg {
+  width: 554px;
+  height: 523px;
+}
+
+/* Right half dimensions match viewBox aspect ratio */
+.card-right {
+  width: 554px;
+  height: 523px;
+  transform-origin: left center;
+  transform: rotateY(-90deg);
+}
+
+.card-right .card-half-inner {
+  width: 554px;
+  height: 523px;
+  overflow: hidden;
+}
+
+.card-right .half-svg {
+  width: 554px;
+  height: 523px;
+}
+
+/* ---------- Opened State ---------- */
+.card-left.opened {
+  transform: rotateY(0deg);
+}
+
+.card-right.opened {
+  transform: rotateY(0deg);
+}
+
+/* ---------- Left Content (Message) ---------- */
+.left-content {
+  position: absolute;
+  top: 8%;
+  left: 6%;
+  width: 516px;
+  height: 458px;
+  opacity: 0;
+  transition: opacity 0.6s ease 0.4s;
+}
+
+.outline-heart {
+  position: absolute;
+  width: 516px;
+  height: 458px;
+  top: 0;
+  left: 0;
+  object-fit: contain;
+  transform: rotate(-1.17deg);
+}
+
+.love-message {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-11.51deg);
+  font-family: 'PP Editorial New', Georgia, serif;
+  font-size: 32px;
+  color: white;
+  text-align: center;
+  width: 413px;
+  line-height: normal;
+}
+
+/* ---------- Right Content (Photo) ---------- */
+.right-content {
+  position: absolute;
+  top: 50%;
+  left: 46%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.6s ease 0.4s;
+}
+
+.photo-masked {
+  width: 515px;
+  height: 458px;
+}
+
+/* Content fades in when card is opened */
+.card-left.opened .left-content,
+.card-right.opened .right-content {
+  opacity: 1;
+}
