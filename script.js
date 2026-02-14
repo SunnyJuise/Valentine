@@ -48,20 +48,20 @@ document.addEventListener('DOMContentLoaded', () => {
     animating = true;
     isOpened = false;
 
-    // Fold the halves back
+    // Fold the halves back and rotate card-book simultaneously
     cardLeft.classList.remove('opened');
     cardRight.classList.remove('opened');
+    cardBook.classList.remove('opening');
 
-    // After halves fold, rotate back and show closed heart
+    // Fade in the closed heart partway through the fold
     setTimeout(() => {
-      cardBook.classList.remove('opening');
-
       heartClosed.style.display = '';
-      // Force reflow so display:'' takes effect before opacity transition
       heartClosed.offsetHeight;
       heartClosed.style.opacity = '1';
       heartClosed.style.pointerEvents = '';
+    }, 800);
 
+    setTimeout(() => {
       animating = false;
     }, 1200);
   });
