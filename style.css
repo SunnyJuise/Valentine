@@ -13,27 +13,17 @@
 
 body {
   background: #101010;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   min-height: 100vh;
   overflow: hidden;
 }
 
-/* ---------- Scene ---------- */
-.card-scene {
-  width: 1200px;
-  height: 1200px;
-  position: relative;
-  perspective: 1800px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transform-origin: center center;
-}
-
-/* ---------- Header ---------- */
+/* ---------- Header (outside scene, always at top) ---------- */
 .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
   font-family: 'PP Editorial New', Georgia, serif;
   font-size: 12px;
   color: white;
@@ -42,8 +32,20 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 4px;
-  padding-top: 50px;
+  padding-top: 20px;
   line-height: normal;
+}
+
+/* ---------- Scene ---------- */
+.card-scene {
+  width: 1200px;
+  height: 1200px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  perspective: 1800px;
+  transform-origin: center center;
 }
 
 /* ---------- Closed Heart ---------- */
